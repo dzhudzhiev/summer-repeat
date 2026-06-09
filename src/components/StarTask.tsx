@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import ReactMarkdown from 'react-markdown';
+import remarkGfm from 'remark-gfm';
 import rehypeRaw from 'rehype-raw';
 import { renderMathInText } from '../utils/math';
 import type { Task } from '../content/types';
@@ -20,7 +21,7 @@ export function StarTask({ task, done: initialDone = false, onComplete }: StarTa
   };
 
   const md = (text: string) => (
-    <ReactMarkdown rehypePlugins={[rehypeRaw]}>
+    <ReactMarkdown remarkPlugins={[remarkGfm]} rehypePlugins={[rehypeRaw]}>
       {renderMathInText(text)}
     </ReactMarkdown>
   );

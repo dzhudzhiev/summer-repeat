@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import ReactMarkdown from 'react-markdown';
+import remarkGfm from 'remark-gfm';
 import rehypeRaw from 'rehype-raw';
 import { renderMathInText } from '../utils/math';
 import type { Task } from '../content/types';
@@ -29,7 +30,7 @@ export function PracticeBlock({ tasks, done = false, onProgress }: PracticeBlock
             <span className="task-id">#{task.id}</span>
           </div>
           <div className="task-text markdown-content">
-            <ReactMarkdown rehypePlugins={[rehypeRaw]}>
+            <ReactMarkdown remarkPlugins={[remarkGfm]} rehypePlugins={[rehypeRaw]}>
               {renderMathInText(task.text)}
             </ReactMarkdown>
           </div>
@@ -37,7 +38,7 @@ export function PracticeBlock({ tasks, done = false, onProgress }: PracticeBlock
             <details className="task-hint">
               <summary>Подсказка</summary>
               <div className="markdown-content">
-                <ReactMarkdown rehypePlugins={[rehypeRaw]}>
+                <ReactMarkdown remarkPlugins={[remarkGfm]} rehypePlugins={[rehypeRaw]}>
                   {renderMathInText(task.hint)}
                 </ReactMarkdown>
               </div>
@@ -51,7 +52,7 @@ export function PracticeBlock({ tasks, done = false, onProgress }: PracticeBlock
           </button>
           {expanded[task.id] && (
             <div className="task-solution markdown-content">
-              <ReactMarkdown rehypePlugins={[rehypeRaw]}>
+              <ReactMarkdown remarkPlugins={[remarkGfm]} rehypePlugins={[rehypeRaw]}>
                 {renderMathInText(task.solution)}
               </ReactMarkdown>
             </div>

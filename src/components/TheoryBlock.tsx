@@ -1,4 +1,5 @@
 import ReactMarkdown from 'react-markdown';
+import remarkGfm from 'remark-gfm';
 import rehypeRaw from 'rehype-raw';
 import { renderMathInText } from '../utils/math';
 
@@ -11,7 +12,7 @@ export function TheoryBlock({ content }: TheoryBlockProps) {
     <div className="theory-block">
       <h4 className="block-title">Теория</h4>
       <div className="theory-content markdown-content">
-        <ReactMarkdown rehypePlugins={[rehypeRaw]}>
+        <ReactMarkdown remarkPlugins={[remarkGfm]} rehypePlugins={[rehypeRaw]}>
           {renderMathInText(content)}
         </ReactMarkdown>
       </div>
