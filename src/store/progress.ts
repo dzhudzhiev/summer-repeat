@@ -143,12 +143,12 @@ export const useProgressStore = create<ProgressStore>()(
         // Old format: keys are day numbers directly
         const hasDayKeys = Object.keys(p).some((k) => /^\d+$/.test(k));
         if (hasDayKeys) {
-          return { days: migrateDays(p) };
+          return { ...current, days: migrateDays(p) };
         }
 
         // New format after first persist: { days: { ... } }
         if (p.days && typeof p.days === 'object') {
-          return { days: migrateDays(p.days) };
+          return { ...current, days: migrateDays(p.days) };
         }
 
         return current;
