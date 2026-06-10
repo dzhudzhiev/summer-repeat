@@ -20,7 +20,11 @@
       "Bash(node -e \"const fs=require\\(''fs''\\);const c=fs.readFileSync\\(''src/content/week-01/day-05.ts'',''utf8''\\);c.split\\(''\\\\n''\\).forEach\\(\\(l,i\\)=>{if\\(l.match\\(/\\(?<!\\\\\\\\\\\\\\)quad/\\)\\)console.log\\(''L''+\\(i+1\\)+'': ''+l.trim\\(\\)\\)}\\)\")",
       "Bash(node scripts/check-quad.cjs)",
       "Bash(git add *)",
-      "Bash(git commit -m 'SelfCheck: поддержка жирного шрифта в LaTeX-разметке *)"
+      "Bash(git commit -m 'SelfCheck: поддержка жирного шрифта в LaTeX-разметке *)",
+      "Bash(node *)",
+      "Bash(python3 -c ' *)",
+      "Bash(grep -n '\\\\\\\\\\\\\\\\frac' src/content/week-01/day-05.ts)",
+      "Bash(xxd scripts/test-escapes.cjs)"
     ]
   }
 }
