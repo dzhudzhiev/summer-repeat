@@ -15,7 +15,7 @@ function ScrollToTop() {
 
 function App() {
   return (
-    <BrowserRouter>
+    <BrowserRouter basename="/summer-repeat">
       <ScrollToTop />
       <div className="app">
         <Header />
