@@ -3,16 +3,18 @@ import katex from 'katex';
 import type { SelfCheckQuestion } from '../content/types';
 
 function renderMath(text: string): string {
-  // First handle display math $$...$$
-  const withDisplay = text.replace(/\$\$(.+?)\$\$/gs, (_, math) => {
+  // Convert markdown bold **text** to <strong> before KaTeX
+  let result = text.replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>');
+  // Handle display math $$...$$
+  result = result.replace(/\$\$(.+?)\$\$/gs, (_, math) => {
     try {
       return katex.renderToString(math.trim(), { displayMode: true, throwOnError: false });
     } catch {
       return _;
     }
   });
-  // Then handle inline math $...$
-  return withDisplay.replace(/\$(.+?)\$/g, (_, math) => {
+  // Handle inline math $...$
+  return result.replace(/\$(.+?)\$/g, (_, math) => {
     try {
       return katex.renderToString(math.trim(), { displayMode: false, throwOnError: false });
     } catch {
