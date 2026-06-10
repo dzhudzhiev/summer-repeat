@@ -3,7 +3,24 @@
     "allow": [
       "Bash(npx tsc:*)",
       "Bash(npx vite:*)",
-      "Bash(grep -l \"table\" src/content/week-*/day-*.ts)"
+      "Bash(grep -l \"table\" src/content/week-*/day-*.ts)",
+      "Bash(grep -rn '\\\\$[0-9]' src/content/week-01/ src/content/week-02/)",
+      "Bash(node -e \":*)",
+      "Bash(grep -rn '\\\\$\\\\$[A-Za-z]\\\\$\\\\$' src/content/)",
+      "Bash(grep -rn '^\\\\s*-\\\\s*\\\\$\\\\$' src/content/)",
+      "Bash(grep -rn '\\\\$\\\\$' src/content/)",
+      "Bash(node scripts/fix-short-days.cjs)",
+      "Bash(node -e \"const fs=require\\(''fs''\\);[21,22,24,25,26,28,29,30].forEach\\(d=>{const w=Math.ceil\\(d/5\\);const f=''src/content/week-''+String\\(w\\).padStart\\(2,''0''\\)+''/day-''+String\\(d\\).padStart\\(2,''0''\\)+''.ts'';try{const c=fs.readFileSync\\(f,''utf8''\\);const t=c.match\\(/theory: \\\\x60[\\\\s\\\\S]*?\\\\x60/g\\);console.log\\(''Day ''+d+'': ''+\\(t?t.reduce\\(\\(a,t\\)=>a+t.length,0\\):''?''\\)+'' chars''\\);}catch\\(e\\){console.log\\(''Day ''+d+'': ERROR ''+e.message\\)}}\\)\")",
+      "Bash(node scripts/check-theory.cjs)",
+      "Bash(node scripts/check-sizes.cjs)",
+      "Bash(grep -v \"^--$\")",
+      "Bash(node scripts/fix-commas.cjs)",
+      "Bash(node scripts/fix-latex-escapes.cjs)",
+      "Bash(node scripts/verify-fixes.cjs)",
+      "Bash(node -e \"const fs=require\\(''fs''\\);const c=fs.readFileSync\\(''src/content/week-01/day-05.ts'',''utf8''\\);c.split\\(''\\\\n''\\).forEach\\(\\(l,i\\)=>{if\\(l.match\\(/\\(?<!\\\\\\\\\\\\\\)quad/\\)\\)console.log\\(''L''+\\(i+1\\)+'': ''+l.trim\\(\\)\\)}\\)\")",
+      "Bash(node scripts/check-quad.cjs)",
+      "Bash(git add *)",
+      "Bash(git commit -m 'SelfCheck: поддержка жирного шрифта в LaTeX-разметке *)"
     ]
   }
 }

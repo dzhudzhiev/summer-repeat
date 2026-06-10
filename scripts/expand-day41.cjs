@@ -1,0 +1,160 @@
+const fs = require('fs');
+const path = require('path');
+
+const filePath = path.join(__dirname, '..', 'src', 'content', 'week-09', 'day-41.ts');
+let content = fs.readFileSync(filePath, 'utf8');
+const lines = content.split('\n');
+
+let theoryStarts = [];
+let theoryEnds = [];
+for (let i = 0; i < lines.length; i++) {
+  if (lines[i].includes('theory: `') && !lines[i].trim().startsWith('//')) theoryStarts.push(i);
+}
+for (let i = 0; i < lines.length; i++) {
+  if (lines[i].trim() === '`,' && theoryStarts.some(s => i > s)) theoryEnds.push(i);
+}
+
+const mathStart = theoryStarts[0], mathEnd = theoryEnds[0];
+const rusStart = theoryStarts[1], rusEnd = theoryEnds[1];
+console.log('Math:', mathStart+1, '-', mathEnd+1, 'Russian:', rusStart+1, '-', rusEnd+1);
+
+const newMathTheory = [
+  '      theory: `## Арифметическая прогрессия',
+  '',
+  'Прогрессии повсюду: каждый день вы проходите на одно и то же расстояние больше, копилка пополняется на одну и ту же сумму. В основе — арифметическая прогрессия.',
+  '',
+  '---',
+  '',
+  '### Определение',
+  '',
+  '<div class="theory-definition">',
+  '<strong>Арифметическая прогрессия</strong> — последовательность, каждый член которой (начиная со второго) равен предыдущему, сложенному с одним и тем же числом.',
+  '</div>',
+  '',
+  '<div class="theory-formula">$$a_{n+1} = a_n + d$$</div>',
+  '',
+  '<p>$d$ — <strong>разность</strong> прогрессии.</p>',
+  '',
+  '<div class="theory-example">',
+  '<strong>Пример:</strong> $2, 5, 8, 11, 14, ...$ — $d = 3$. Каждый следующий на 3 больше.',
+  '</div>',
+  '',
+  '<div class="theory-example">',
+  '<strong>Пример:</strong> $20, 17, 14, 11, ...$ — $d = -3$. Каждый следующий на 3 меньше.',
+  '</div>',
+  '',
+  '---',
+  '',
+  '### Формула $n$-го члена',
+  '',
+  '<div class="theory-formula">$$a_n = a_1 + (n-1)d$$</div>',
+  '',
+  '<div class="theory-example">',
+  '<strong>Задача:</strong> Найти 10-й член $3, 7, 11, 15, ...$',
+  '<p><strong>Решение:</strong> $a_1 = 3$, $d = 4$. $a_{10} = 3 + 9 \cdot 4 = 39$.</p>',
+  '</div>',
+  '',
+  '---',
+  '',
+  '### Свойство членов',
+  '',
+  '<div class="theory-formula">$$a_n = \frac{a_{n-1} + a_{n+1}}{2}$$</div>',
+  '',
+  '<p>Каждый член (кроме крайних) равен среднему арифметическому соседних.</p>',
+  '',
+  '---',
+  '',
+  '### Сумма $n$ первых членов',
+  '',
+  '<div class="theory-formula">',
+  '$$S_n = \frac{a_1 + a_n}{2} \cdot n$$',
+  '$$S_n = \frac{2a_1 + (n-1)d}{2} \cdot n$$',
+  '</div>',
+  '',
+  '<div class="theory-example">',
+  '<strong>Задача:</strong> Найти сумму первых 20 членов $3, 7, 11, 15, ...$',
+  '<p><strong>Решение:</strong> $a_{20} = 3 + 19 \cdot 4 = 79$. $S_{20} = \frac{3+79}{2} \cdot 20 = 820$.</p>',
+  '</div>',
+  '',
+  '<div class="theory-example">',
+  '<strong>Задача:</strong> Найти сумму первых 10 членов $100, 90, 80, ...$',
+  '<p><strong>Решение:</strong> $a_1 = 100$, $d = -10$. $a_{10} = 100 + 9 \cdot (-10) = 10$.</p>',
+  '<p>$S_{10} = \frac{100 + 10}{2} \cdot 10 = 55 \cdot 10 = 550$.</p>',
+  '</div>',
+  '',
+  '---',
+  '',
+  '### Признак прогрессии',
+  '',
+  '<div class="theory-warning">',
+  '<strong>Признак:</strong> Последовательность — арифметическая прогрессия, если разность между любыми двумя последовательными членами постоянна: $a_{n+1} - a_n = const$.',
+  '</div>',
+  '`,',
+].join('\n');
+
+const newRusTheory = [
+  '      theory: `## Сложносочинённое предложение (ССП)',
+  '',
+  'Сложные предложения делают речь выразительнее. В ССП части равноправны.',
+  '',
+  '---',
+  '',
+  '### Определение',
+  '',
+  '<div class="theory-definition">',
+  '<strong>ССП</strong> — сложное предложение, части которого равноправны и соединены сочинительными союзами.',
+  '</div>',
+  '',
+  'От одной части нельзя задать вопрос к другой. Части независимы.',
+  '',
+  '---',
+  '',
+  '### Союзы в ССП',
+  '',
+  '<table>',
+  '<thead><tr><th>Группа</th><th>Союзы</th><th>Значение</th></tr></thead>',
+  '<tbody>',
+  '<tr><td><strong>Соединительные</strong></td><td>и, да (=и), ни...ни, тоже, также</td><td>Перечисление, одновременность</td></tr>',
+  '<tr><td><strong>Противительные</strong></td><td>а, но, да (=но), однако, зато</td><td>Противопоставление</td></tr>',
+  '<tr><td><strong>Разделительные</strong></td><td>или, либо, то...то, не то...не то</td><td>Чередование, выбор</td></tr>',
+  '</tbody>',
+  '</table>',
+  '',
+  '---',
+  '',
+  '### Знаки препинания',
+  '',
+  '<p><strong>Запятая ставится</strong> между частями ССП:</p>',
+  '<div class="theory-formula">$$[\text{Часть 1}], \text{ [союз]} \text{ [Часть 2]}$$</div>',
+  '',
+  '<div class="theory-example">',
+  '<strong>Пример:</strong> «Солнце уже село, и на небе зажглись первые звёзды.»',
+  '</div>',
+  '',
+  '<p><strong>Запятая НЕ ставится:</strong></p>',
+  '<ol>',
+  '<li>Общий второстепенный член: <em>К вечеру похолодало и пошёл дождь.</em></li>',
+  '<li>Обе части — вопросительные/восклицательные: <em>Кто вы и что вам нужно?</em></li>',
+  '<li>Обе части — назывные предложения: <em>Мороз и солнце!</em></li>',
+  '</ol>',
+  '',
+  '---',
+  '',
+  '### Схемы ССП',
+  '',
+  '$$[ \ ], \text{ и } [ \ ]$$',
+  '$$[ \ ], \text{ но } [ \ ]$$',
+  '$$[ \ ], \text{ или } [ \ ]$$',
+  '`,',
+].join('\n');
+
+const result = [
+  ...lines.slice(0, mathStart),
+  newMathTheory,
+  ...lines.slice(mathEnd + 1, rusStart),
+  newRusTheory,
+  ...lines.slice(rusEnd + 1),
+].join('\n');
+
+fs.writeFileSync(filePath, result);
+console.log('Day 41 expanded');
