@@ -690,6 +690,17 @@ body {
   margin-top: 12px;
 }
 
+.theory-content hr {
+  border: none;
+  border-top: 1px solid var(--border);
+  margin: 20px 0;
+}
+
+.theory-content p {
+  margin: 10px 0;
+  line-height: 1.7;
+}
+
 /* Theory block types */
 .theory-definition {
   background: #f0f9ff;

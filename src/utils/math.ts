@@ -1,8 +1,12 @@
 import katex from 'katex';
 
 export function renderMathInText(text: string): string {
-  // First handle display math $$...$$
-  let result = text.replace(/\$\$(.+?)\$\$/gs, (_, math) => {
+  // Convert markdown bold **text** to <strong> before KaTeX
+  let result = text.replace(/\*\*(.+?)\*\*/gs, '<strong>$1</strong>');
+  // Convert horizontal rule --- to <hr>
+  result = result.replace(/^---$/gm, '<hr>');
+  // Handle display math $$...$$
+  result = result.replace(/\$\$(.+?)\$\$/gs, (_, math) => {
     try {
       return katex.renderToString(math.trim(), {
         displayMode: true,
@@ -12,7 +16,7 @@ export function renderMathInText(text: string): string {
       return _;
     }
   });
-  // Then handle inline math $...$ — avoids already-replaced HTML
+  // Handle inline math $...$ — avoids already-replaced HTML
   result = result.replace(/\$(.+?)\$/g, (_, math) => {
     try {
       return katex.renderToString(math.trim(), {

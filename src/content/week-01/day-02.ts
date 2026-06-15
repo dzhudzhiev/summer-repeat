@@ -1,6 +1,6 @@
 import type { DayData } from '../types';
-import physicsTheory from './day-02/physics-theory.md';
-import russianTheory from './day-02/russian-theory.md';
+import physicsTheory from './day-02/physics-theory.html';
+import russianTheory from './day-02/russian-theory.html';
 
 export const day02: DayData = {
   day: 2,
@@ -86,8 +86,8 @@ export const day02: DayData = {
         {
           id: 'f1-8',
           difficulty: 'medium',
-          text: 'Тело движется равномерно. За 4 секунды оно прошло 20 метров. а) Чему равна скорость тела? б) Какой путь оно пройдёт за 10 секунд? в) За какое время тело пройдёт 50 метров?',
-          solution: 'а) $v = s/t = 20/4 = 5$ м/с. б) $s = v \\cdot t = 5 \\cdot 10 = 50$ м. в) $t = s/v = 50/5 = 10$ с. Ответ: а) 5 м/с, б) 50 м, в) 10 с.',
+          text: 'На графике в теории показана зависимость пути от времени для равномерного движения. Используя данные графика, определите: а) Какой путь прошло тело за 3 секунды? б) Чему равна скорость тела? в) Какой путь пройдёт тело за 8 секунд?',
+          solution: 'а) По графику: при $t = 3$ с путь $s = 30$ м. б) За 5 с тело прошло 50 м, $v = 50/5 = 10$ м/с. в) $s = v \\cdot t = 10 \\cdot 8 = 80$ м. Ответ: а) 30 м, б) 10 м/с, в) 80 м.',
         },
         {
           id: 'f1-9',
