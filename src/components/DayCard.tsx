@@ -11,7 +11,7 @@ interface DayCardProps {
 
 export function DayCard({ day, labels, colors, completed, starTaskDone }: DayCardProps) {
   return (
-    <Link to={`/day/${day.day}`} className={`day-card ${completed ? 'completed' : ''}`}>
+    <Link to={`/day/${day.day}`} className={`day-card ${completed ? 'completed' : ''}`} id={`day-card-${day.day}`}>
       <div className="day-card-header">
         <span className="day-card-number">День {day.day}</span>
         <div className="day-card-badges">

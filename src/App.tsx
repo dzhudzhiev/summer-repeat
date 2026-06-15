@@ -8,6 +8,18 @@ import { About } from './components/About';
 function ScrollToTop() {
   const { pathname } = useLocation();
   useEffect(() => {
+    if (pathname === '/') {
+      const lastDay = sessionStorage.getItem('lastDay');
+      if (lastDay) {
+        sessionStorage.removeItem('lastDay');
+        // Wait for DOM to render, then scroll to the card
+        requestAnimationFrame(() => {
+          const el = document.getElementById(`day-card-${lastDay}`);
+          if (el) el.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        });
+        return;
+      }
+    }
     window.scrollTo(0, 0);
   }, [pathname]);
   return null;

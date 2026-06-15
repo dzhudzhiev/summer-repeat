@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { SubjectBlock } from './SubjectBlock';
 import { SubjectTabs } from './SubjectTabs';
@@ -22,6 +22,10 @@ export function DayView() {
       </div>
     );
   }
+
+  useEffect(() => {
+    if (day?.day) sessionStorage.setItem('lastDay', String(day.day));
+  }, [day?.day]);
 
   const dp = days[day.day];
   const completed = dp?.completed ?? false;
