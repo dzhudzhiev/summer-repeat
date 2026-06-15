@@ -1,6 +1,6 @@
 import type { DayData } from '../types';
-import mathTheory from './day-10/math-theory.html';
-import chemistryTheory from './day-10/chemistry-theory.html';
+import mathTheory from './day-10/math-theory.html?raw';
+import chemistryTheory from './day-10/chemistry-theory.html?raw';
 
 export const day10: DayData = {
   day: 10,
